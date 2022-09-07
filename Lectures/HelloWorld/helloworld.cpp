@@ -1,3 +1,4 @@
+// Lecture 9/3/22
 // iostream = input/output stream - contains definitions for std and therefore cout
 #include <iostream>
 // using namespace std - allows us to use cout without std::cout
