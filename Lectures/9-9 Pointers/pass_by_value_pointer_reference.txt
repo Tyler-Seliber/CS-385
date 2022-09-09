@@ -1,0 +1,108 @@
+In Pass By Value, the value of the integer x given as argument to the
+function call is copied into the integer function argument k at the start
+of the function call.  After that x and k are independent of each other so
+modifying k does not modify x.
+
+void pass_by_value(int k) {
+	...
+}
+
+int main() {
+	...
+	pass_by_value(x);
+	...
+}
+
+           ...
+        |        |
+        +--------+
+   0992 |        |
+        +--------+
+ k 1000 |    5   | <--+
+        +--------+    |
+   1008 |        |    |
+        +--------+    |
+        |        |    |
+           ...        | copy
+        |        |    |
+        +--------+    |
+   1992 |        |    |
+        +--------+    |
+ x 2000 |    5   | ---+
+        +--------+
+   2008 |        |
+        +--------+
+        |        |
+           ...
+
+In Pass By Pointer, the address of the integer x given as argument to the
+function call is copied into the pointer function argument k at the start
+of the function call.  Since k points at x (k contains the address of x),
+then *k is the same as x itself, so changing *k changes x, even though x
+and k are defined in different functions.
+
+void pass_by_pointer(int *k) {
+	...
+}
+
+int main() {
+	...
+	pass_by_pointer(&x);
+	...
+}
+
+           ...
+        |        |
+        +--------+
+   0992 |        |
+        +--------+
+ k 1000 |  2000  | ---+
+ ▲      +--------+    |
+ | 1008 |        |    |
+ |      +--------+    |
+ |      |        |    |
+ | copy    ...        | points at
+ |      |        |    |
+ |      +--------+    |
+ \ 1992 |        |    |
+  \     +--------+    |
+ x 2000 |    5   | <--+
+        +--------+
+   2008 |        |
+        +--------+
+        |        |
+           ...
+
+Modifying a variable defined in a different function is one of the two main
+reasons why pointers are very useful.
+
+In Pass By Reference, the variable x given as argument to the function call
+is aliased with the new function argument name k at the start of the
+function call.  Since k is just another name for x, changing k changes x,
+even though x and k are defined in different functions.
+
+void pass_by_reference(int &k) {
+	...
+}
+
+int main() {
+	...
+	pass_by_reference(x);
+	...
+}
+
+           ...
+        |        |
+        +--------+
+   1992 |        |
+        +--------+
+ x 2000 |    5   | k
+        +--------+
+   2008 |        |
+        +--------+
+        |        |
+           ...
+
+(Internally, the C++ compiler implements Pass By Reference by automatically
+rewriting your code to use Pass By Pointer, so Pass By Reference is just a
+nice notation provided to you by C++ for your convenience.)

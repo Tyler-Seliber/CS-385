@@ -1,0 +1,53 @@
+The "values" pointer points at the first element of an array of integers
+which is dynamically allocated from the heap using the "new" operator:
+
+        int *values = new int[x];
+
+                ...
+             |        |
+             +--------+
+        1992 |        |
+             +--------+
+ values 2000 | 34992  | ---+
+             +--------+    |
+        2008 |        |    |
+                ...        |
+                           | points at
+                ...        |
+             |        |    |
+             +--------+    |
+       34992 |        | <--+
+             +--------+
+       35000 |        | <--- values + 1
+             +--------+
+       35008 |        | <--- values + 2
+             +--------+
+       35016 |        | <--- values + 3
+             +--------+
+       35024 |        | <--- values + 4
+             +--------+
+             |        |
+                ...
+
+note: addresses increase of steps of 8 because they take 8 bits on a 64-bit computer.
+C++ compiler automatically scales the ints (when doing values + x) for pointer arithmetic.
+
+The array itself has no name so its elements can only be accessed through
+the "values" pointer.  The array elements can then be accessed in two
+different (and equivalent) ways:
+
+1) either by using the "values" pointer as if it were the name of the array
+itself, plus using the usual array notation: values[0], values[1],
+values[2], etc.
+
+2) or by using pointer arithmetic: values, values + 1, values + 2, etc.,
+are pointers pointing at the different elements of the array, and therefore
+*values, *(values + 1), *(values + 2), etc., are the array elements
+themselves.
+
+(In fact, internally the C++ compiler automatically transforms values[i]
+into *(values + i) which is what the computer's CPU then uses to access the
+array elements in physical memory.)
+
+Accessing dynamically allocated memory is the other one of the two main
+reasons why pointers are very useful.

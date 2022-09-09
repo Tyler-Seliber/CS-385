@@ -1,0 +1,32 @@
+Every memory cell has a value (the content of the cell) and an address (a
+location in physical memory).
+
+Since humans are not good at remembering numerical addresses, we prefer to
+use variable names instead.
+
+A pointer is then a variable that stores as its value the address of another
+variable.
+
+int x = 5;   // x contains the value 5
+int *z = &x; // z contains the address of x
+
+           RAM
+        +--------+
+      0 |        |
+        +--------+
+        |        |
+           ...
+        |        |
+        +--------+
+   1992 |        |
+        +--------+
+ x 2000 |    5   | <--+
+        +--------+    |
+   2008 |        |    | points at (using *z (dreference operator) - address of integer to integer itself)
+        +--------+    |
+ z 2016 |  2000  | ---+
+        +--------+
+   2024 |        |
+        +--------+
+        |        |
+           ...

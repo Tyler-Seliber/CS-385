@@ -1,0 +1,20 @@
+argv is an array of pointers to strings:
+
+        +----+
+        |    |      +---+---+---+---+---+---+---+
+argv[0] |  -------->| m | a | x | t | w | o | \0|
+        |    |      +---+---+---+---+---+---+---+
+        +----+
+        |    |      +---+---+---+
+argv[1] |  -------->| 2 | 3 | \0|
+        |    |      +---+---+---+
+        +----+
+        |    |      +---+---+---+
+argv[2] |  -------->| 5 | 7 | \0|
+        |    |      +---+---+---+
+        +----+
+
+argc is equal to 3: 1 for the program name and 2 arguments given to the
+program on the comand line.
+
+\0 is how C++ writes strings in memory, but we don't have to worry about that while writing code
