@@ -1,0 +1,22 @@
+Suppose we have some input data of size n.  We want to process this data
+using an algorithm which has a running time of f(n), where f(n) is
+expressed in microseconds.
+
+For a given f(n), what is the biggest n that we can solve in time t?
+
+Example:
+
+t = 1 hour = 3600 seconds/hour * 1000000 microseconds/second
+  = 3.6 * 10⁹ microseconds
+
+If f(n) = lg(n) = 3.6 * 10⁹
+then n = 2^(3.6 * 10⁹) which is... a lot.
+
+Note: here lg means log base 2.
+
+If f(n) = n = 3.6 * 10⁹
+then n = 3.6 * 10⁹.
+
+If f(n) = n lg(n) = 3.6 * 10⁹
+then n = ... ?
+In this case we need to solve numerically.
