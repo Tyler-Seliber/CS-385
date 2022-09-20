@@ -104,13 +104,13 @@ int PrimesSieve::count_num_primes() const {
 void PrimesSieve::sieve() {
     // TODO: write sieve algorithm
     // initialize the array
-    for (int i = 2; i <= limit_ + 1; i++) {
+    for (int i = 2; i <= limit_; i++) {
         is_prime_[i] = true;
     }
     // run the loops
-    for (int i = 2; i < sqrt(limit_ + 1); i++) {
+    for (int i = 2; i < sqrt(limit_); i++) {
         if (is_prime_[i] == true) {
-            for (int j = pow(i, 2); j <= limit_ + 1; j += i) {
+            for (int j = pow(i, 2); j <= limit_; j += i) {
                 is_prime_[j] = false;
             }
         }
@@ -164,6 +164,7 @@ int main() {
     // TODO: write code that uses your class to produce the desired output.
     // create ONE object here (either using local variable or 'new')
     PrimesSieve *primes = new PrimesSieve(limit);
+//    PrimesSieve primes(limit);
     cout << endl;
     cout << "Number of primes found: " << primes->num_primes() << endl;
     cout << "Primes up to " << limit << ":" << endl;
