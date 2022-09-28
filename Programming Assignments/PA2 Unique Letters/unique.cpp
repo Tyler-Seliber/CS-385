@@ -11,9 +11,19 @@
 using namespace std;
 
 bool is_all_lowercase(const string &s) {
-    // TODO: returns true if all characters in string are lowercase
+    // returns true if all characters in string are lowercase
     // letters in the English alphabet; false otherwise.
-    return false;
+
+    bool hasUpper = false;
+    bool hasNum = false;
+    for (char c: str) {
+        hasUpper = !islower(c);
+        hasNum = isdigit(c);
+        if (hasUpper || hasNum) {
+            return false;
+        }
+    }
+    return true;
 }
 
 bool all_unique_letters(const string &s) {
@@ -37,23 +47,12 @@ int main(int argc, char *const argv[]) {
 
     // Check if string contains only lowercase letters
     string str = argv[1];
-    bool hasUpper = false;
-    bool hasNum = false;
-    for (char c: str) {
-        hasUpper = !islower(c);
-        hasNum = isdigit(c);
-        if (hasUpper || hasNum) {
-            break;
-        }
-    }
-    if (hasUpper || hasNum) {
+    if (!is_all_lowercase(str)) {
         cerr << "Error: String must contain only lowercase letters." << endl;
         return 1;
     }
 
-
     // Calls other functions to produce correct output.
-
     cout << str << endl;
     return 0;
 }
