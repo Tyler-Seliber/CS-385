@@ -16,7 +16,7 @@ bool is_all_lowercase(const string &s) {
 
     bool hasUpper = false;
     bool hasNum = false;
-    for (char c: str) {
+    for (char c: s) {
         hasUpper = !islower(c);
         hasNum = isdigit(c);
         if (hasUpper || hasNum) {
@@ -27,14 +27,26 @@ bool is_all_lowercase(const string &s) {
 }
 
 bool all_unique_letters(const string &s) {
-    // TODO: returns true if all letters in string are unique, that is
+    // returns true if all letters in string are unique, that is
     // no duplicates are found; false otherwise.
 
     // You MUST use only a single int for storage and work with bitwise
     // and bitshifting operators.  Using any other kind of solution will
     // automatically result in a grade of ZERO for the whole assignment.
 
-    return false;
+    int vector = 0;
+    int setter;
+
+    for (char c: s) {
+        setter = (1 << (c - 'a'));
+
+        // duplicate found
+        if ((vector & setter) != 0) {
+            return false;
+        }
+        vector = vector | setter;
+    }
+    return true;
 }
 
 int main(int argc, char *const argv[]) {
@@ -53,6 +65,10 @@ int main(int argc, char *const argv[]) {
     }
 
     // Calls other functions to produce correct output.
-    cout << str << endl;
+    if (all_unique_letters(str)) {
+        cout << "All letters are unique." << endl;
+    } else {
+        cout << "Duplicate letters found." << endl;
+    }
     return 0;
 }
