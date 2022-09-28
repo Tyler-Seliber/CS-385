@@ -38,5 +38,6 @@ def nlogn_rec_helper(c, lower, upper):
 def nlogn_rec(c):
     return nlogn_rec_helper(c, 0.0, c)
 
-print(nlogn(3600000000))
-print(nlogn_rec(3600000000))
+# print(nlogn(3600000000))
+# print(nlogn_rec(3600000000))
+print(nlogn(36000000))
