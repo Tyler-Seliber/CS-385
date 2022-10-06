@@ -17,13 +17,41 @@ vector <vector<int>> get_ways(int num_stairs) {
     // TODO: Return a vector of vectors of ints representing
     // the different combinations of ways to climb num_stairs
     // stairs, moving up either 1, 2, or 3 stairs at a time.
+    vector <vector<int>> solutions;
+    if (num_stairs <= 0) {
+        solutions.insert(solutions.begin(), vector<int>());
+    }
+
+    for (int i = 1; i < 4; i++) {
+        if (num_stairs >= i) {
+            vector <vector<int>> result = get_ways(num_stairs - i);
+            // Prepending i to all solutions in result
+            for (long unsigned int j = 0; j < result.size(); j++) {
+
+                result.at(j).insert(result.at(j).begin(), i);
+            }
+            solutions.insert(solutions.end(), result.begin(), result.end());
+        }
+    }
+    return solutions;
 }
 
 void display_ways(const vector <vector<int>> &ways) {
     // TODO: Display the ways to climb stairs by iterating over
     // the vector of vectors and printing each combination.
+    int count = 1;
+    for (auto way = ways.begin(); way != ways.end(); way++) {
+        cout << count << ". ";
+        for (auto step = way->begin(); step != way->end(); step++) {
+            cout << *step << ", ";
+        }
+        cout << endl;
+        count++;
+    }
 }
 
 int main(int argc, char *const argv[]) {
+    display_ways(get_ways(5));
+    return 0;
 
 }
