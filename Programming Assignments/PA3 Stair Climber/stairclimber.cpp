@@ -51,7 +51,20 @@ void display_ways(const vector <vector<int>> &ways) {
 }
 
 int main(int argc, char *const argv[]) {
-    display_ways(get_ways(5));
+    // reads and parses command line arguments.
+    if (argc != 2) {
+        cerr << "Usage: " << argv[0] << " <number of stairs>" << endl;
+        return 1;
+    }
+    istringstream iss;
+    int num_stairs;
+    iss.str(argv[1]);
+    if (!(iss >> num_stairs) || num_stairs <= 0) {
+        cerr << "Error: Number of stairs must be a positive integer" << endl;
+        return 1;
+    }
+    iss.clear();
+    display_ways(get_ways(num_stairs));
     return 0;
 
 }
