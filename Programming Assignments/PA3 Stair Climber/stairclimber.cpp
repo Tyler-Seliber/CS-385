@@ -14,7 +14,7 @@
 using namespace std;
 
 vector <vector<int>> get_ways(int num_stairs) {
-    // TODO: Return a vector of vectors of ints representing
+    // Return a vector of vectors of ints representing
     // the different combinations of ways to climb num_stairs
     // stairs, moving up either 1, 2, or 3 stairs at a time.
     vector <vector<int>> solutions;
@@ -27,7 +27,6 @@ vector <vector<int>> get_ways(int num_stairs) {
             vector <vector<int>> result = get_ways(num_stairs - i);
             // Prepending i to all solutions in result
             for (long unsigned int j = 0; j < result.size(); j++) {
-
                 result.at(j).insert(result.at(j).begin(), i);
             }
             solutions.insert(solutions.end(), result.begin(), result.end());
@@ -36,16 +35,40 @@ vector <vector<int>> get_ways(int num_stairs) {
     return solutions;
 }
 
+int num_digits(int num) {
+    // determine how many digits are in an integer
+    int count = 0;
+    while (num > 0) {
+        num /= 10;
+        count++;
+    }
+    return count;
+}
+
+string vector_printout(vector<int> v) {
+    // print out a vector in the format of [1, 2, 3]
+    stringstream ss;
+    ss << "[";
+    for (long unsigned int i = 0; i < v.size(); i++) {
+        ss << v.at(i);
+        if (i != v.size() - 1) {
+            ss << ", ";
+        }
+    }
+    ss << "]";
+    return ss.str();
+}
+
 void display_ways(const vector <vector<int>> &ways) {
-    // TODO: Display the ways to climb stairs by iterating over
+    // Display the ways to climb stairs by iterating over
     // the vector of vectors and printing each combination.
     int count = 1;
+    int num_ways = ways.size();
+    int max_width = num_digits(num_ways);
     for (auto way = ways.begin(); way != ways.end(); way++) {
+        cout << setw(max_width);
         cout << count << ". ";
-        for (auto step = way->begin(); step != way->end(); step++) {
-            cout << *step << ", ";
-        }
-        cout << endl;
+        cout << vector_printout(*way) << endl;
         count++;
     }
 }
@@ -60,11 +83,29 @@ int main(int argc, char *const argv[]) {
     int num_stairs;
     iss.str(argv[1]);
     if (!(iss >> num_stairs) || num_stairs <= 0) {
-        cerr << "Error: Number of stairs must be a positive integer" << endl;
+        cerr << "Error: Number of stairs must be a positive integer." << endl;
         return 1;
     }
     iss.clear();
-    display_ways(get_ways(num_stairs));
+    vector <vector<int>> ways = get_ways(num_stairs);
+    int num_ways = ways.size();
+
+    // Determine whether to print "way" vs. "ways" and "stairs" vs. "stairs"
+    string way_plural;
+    string stair_plural;
+    if (num_ways == 1) {
+        way_plural = "way";
+    } else {
+        way_plural = "ways";
+    }
+    if (num_stairs == 1) {
+        stair_plural = "stair";
+    } else {
+        stair_plural = "stairs";
+    }
+
+    cout << ways.size() << " " << way_plural << " to climb " << num_stairs << " " << stair_plural << "." << endl;
+    display_ways(ways);
     return 0;
 
 }
