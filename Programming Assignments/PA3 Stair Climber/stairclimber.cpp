@@ -47,22 +47,22 @@ int num_digits(int num) {
 
 string vector_printout(vector<int> v) {
     // print out a vector in the format of [1, 2, 3]
-    stringstream ss;
-    ss << "[";
+    string output = "[";
     for (long unsigned int i = 0; i < v.size(); i++) {
-        ss << v.at(i);
+        output += to_string(v.at(i));
         if (i != v.size() - 1) {
-            ss << ", ";
+            output += ", ";
         }
     }
-    ss << "]";
-    return ss.str();
+    output += "]";
+    return output;
 }
 
 void display_ways(const vector <vector<int>> &ways) {
     // Display the ways to climb stairs by iterating over
     // the vector of vectors and printing each combination.
     int count = 1;
+    // variables for formatting
     int num_ways = ways.size();
     int max_width = num_digits(num_ways);
     for (auto way = ways.begin(); way != ways.end(); way++) {
@@ -107,5 +107,4 @@ int main(int argc, char *const argv[]) {
     cout << ways.size() << " " << way_plural << " to climb " << num_stairs << " " << stair_plural << "." << endl;
     display_ways(ways);
     return 0;
-
 }
