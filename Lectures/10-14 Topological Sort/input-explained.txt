@@ -1,0 +1,22 @@
+- top line = 8 vertices, 9 edges
+- each line after means an edge connecting the vectors listed
+- vertex number is automatically determined based on the order of the first number in each line
+8 9
+0 1
+0 3
+3 1
+3 2
+2 1
+4 1
+2 4
+7 1
+7 5
+
+
+- input redirection
+- running './toposort < input.txt' will send the text from input.txt to the program as if it was typed in
+- the program thinks it's reading from the keyboard, when it's really reading from a file
+- this is a UNIX feature, not a C feature
+
+- can verify sort is correct by checking if the left vertex came before the right vertex in the final output
+'
