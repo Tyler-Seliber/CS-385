@@ -139,9 +139,9 @@ int main(int argc, char *argv[]) {
     // TODO: produce output
 
     if (argc == 2) {
-        cout << "Number of inversions: " << count_inversions_slow(values.data(), values.size()) << endl;
+        cout << "Number of inversions: " << count_inversions_slow(&values[0], values.size()) << endl;
     } else {
-        cout << "Number of inversions: " << count_inversions_fast(values.data(), values.size()) << endl;
+        cout << "Number of inversions: " << count_inversions_fast(&values[0], values.size()) << endl;
     }
 
     return 0;
