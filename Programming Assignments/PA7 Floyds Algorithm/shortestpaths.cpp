@@ -11,6 +11,58 @@
 
 using namespace std;
 
+// /**
+//  * Displays the matrix on the screen formatted as a table. */
+// void display_table(long **const matrix, const string &label, const bool use_letters = false)
+// {
+//     // ** CHANGE THESE PLACEHOLDER VALUES **
+//     const int num_vertices = 5;
+
+
+//     cout << label << endl;
+//     long max_val = 0;
+//     for (int i = 0; i < num_vertices; i++)
+//     {
+//         for (int j = 0; j < num_vertices; j++)
+//         {
+//             long cell = matrix[i][j];
+//             if (cell < INF && cell > max_val)
+//             {
+//                 max_val = matrix[i][j];
+//             }
+//         }
+//     }
+//     int max_cell_width = use_letters ? len(max_val) : len(max(static_cast<long>(num_vertices), max_val));
+//     cout << ' ';
+//     for (int j = 0; j < num_vertices; j++)
+//     {
+//         cout << setw(max_cell_width + 1) << static_cast<char>(j + 'A');
+//     }
+//     cout << endl;
+//     for (int i = 0; i < num_vertices; i++)
+//     {
+//         cout << static_cast<char>(i + 'A');
+//         for (int j = 0; j < num_vertices; j++)
+//         {
+//             cout << " " << setw(max_cell_width);
+//             if (matrix[i][j] == INF)
+//             {
+//                 cout << "-";
+//             }
+//             else if (use_letters)
+//             {
+//                 cout << static_cast<char>(matrix[i][j] + 'A');
+//             }
+//             else
+//             {
+//                 cout << matrix[i][j];
+//             }
+//         }
+//         cout << endl;
+//     }
+//     cout << endl;
+// }
+
 int main(int argc, const char *argv[])
 {
     // Make sure the right number of command line arguments exist.
