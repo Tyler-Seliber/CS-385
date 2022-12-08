@@ -52,6 +52,10 @@
         "type_traits": "cpp",
         "typeinfo": "cpp",
         "variant": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "cmath": "cpp",
+        "deque": "cpp",
+        "fstream": "cpp",
+        "stack": "cpp"
     }
 }
